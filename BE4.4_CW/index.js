@@ -1,5 +1,7 @@
 const { initializeDatabase } = require('./db/db.connect');
 const Movie = require('./models/movie.models');
+const cors = require('cors');
+
 const express = require('express');
 
 const app = express();
@@ -8,6 +10,13 @@ const PORT = 3000;
 app.use(express.json());
 
 app.listen(PORT, () => console.log('Server is running on port', PORT));
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 initializeDatabase();
 
